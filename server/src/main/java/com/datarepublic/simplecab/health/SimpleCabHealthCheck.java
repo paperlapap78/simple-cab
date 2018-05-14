@@ -1,4 +1,4 @@
-package com.datarepublic.simplecab;
+package com.datarepublic.simplecab.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

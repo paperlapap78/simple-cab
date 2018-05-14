@@ -1,4 +1,4 @@
-package com.datarepublic.simplecab;
+package com.datarepublic.simplecab.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

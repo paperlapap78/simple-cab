@@ -1,6 +1,7 @@
 package com.datarepublic.simplecab;
 
-import com.codahale.metrics.health.HealthCheck;
+import com.datarepublic.simplecab.health.SimpleCabHealthCheck;
+import com.datarepublic.simplecab.resources.SimpleCabResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
