@@ -1,31 +1,34 @@
 package com.datarepublic.simplecab.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.datarepublic.simplecab.api.CabTrip;
+import com.datarepublic.simplecab.core.SimpleCabService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Path("/trips")
 @Produces(MediaType.APPLICATION_JSON)
 public class SimpleCabResource {
 
-  private final String template;
+  private final SimpleCabService service;
 
-  public SimpleCabResource(String template) {
-    this.template = template;
+  public SimpleCabResource(SimpleCabService service) {
+    this.service = service;
   }
 
   @GET
   @Timed
-  public String getTripCounts(@QueryParam("medallions")Optional<List<String>> medallions, @QueryParam("date") Optional<Date> pickupDate, @QueryParam("ignoreCache") Optional<Boolean> ignoreCache) {
+  public String getTripCounts(@QueryParam("medallion") List<String> medallions, @QueryParam("pickupDate") String pickupDate, @QueryParam("ignoreCache") String ignoreCache) {
 
-    return "whatever";
+    service.getTripCounts(medallions, pickupDate);
+
+    return "whatever" + medallions + pickupDate + ignoreCache;
+  }
+
+  @Path("/cache")
+  @DELETE
+  public void deleteCache() {
+    System.out.println("#### Dennis");
   }
 }

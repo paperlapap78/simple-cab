@@ -10,7 +10,6 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(JUnitPlatform.class)
 public class SimpleCabResourceTest {
@@ -22,12 +21,12 @@ public class SimpleCabResourceTest {
 
   }
 
-  @DisplayName("Test request count")
+  @DisplayName("test simple cab resource accepts a single ")
   @Test
   void testRequestCount() {
     List<String> medallions = Lists.newArrayList("medallion12");
     DateTime aDate  = new DateTime("2013-12-01");
-    String response = resource.getTripCounts(Optional.of(medallions), Optional.of(aDate.toDate()), Optional.of(false));
+    String response = resource.getTripCounts(medallions, aDate.toString(), "true");
     System.out.println("response " + response);
   }
 }
