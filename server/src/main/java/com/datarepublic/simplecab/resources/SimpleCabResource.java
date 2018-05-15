@@ -1,7 +1,10 @@
 package com.datarepublic.simplecab.resources;
 
 import com.codahale.metrics.annotation.Timed;
+import com.datarepublic.simplecab.api.TripCount;
 import com.datarepublic.simplecab.core.SimpleCabService;
+import com.google.common.collect.Lists;
+import org.joda.time.DateTime;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -19,11 +22,9 @@ public class SimpleCabResource {
 
   @GET
   @Timed
-  public String getTripCounts(@QueryParam("medallion") List<String> medallions, @QueryParam("pickupDate") String pickupDate, @QueryParam("ignoreCache") String ignoreCache) {
-
-    service.getTripCounts(medallions, pickupDate);
-
-    return "whatever" + medallions + pickupDate + ignoreCache;
+  public List<TripCount> getTripCounts(@QueryParam("medallion") List<String> medallions, @QueryParam("pickupDate") String pickupDate, @QueryParam("ignoreCache") String ignoreCache) {
+    DateTime dtPickupDate = new DateTime(pickupDate);
+    return service.getTripCounts(medallions, dtPickupDate.toDate());
   }
 
   @Path("/cache")

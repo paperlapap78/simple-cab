@@ -1,6 +1,8 @@
 package com.datarepublic.simplecab;
 
+import com.datarepublic.simplecab.core.SimpleCabService;
 import com.datarepublic.simplecab.health.SimpleCabHealthCheck;
+import com.datarepublic.simplecab.repository.SimpleCabRepository;
 import com.datarepublic.simplecab.resources.SimpleCabResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -24,7 +26,7 @@ public class Server extends Application<SimpleCabConfiguration> {
 
   @Override
   public void run(SimpleCabConfiguration configuration, Environment environment) {
-    final SimpleCabResource resource = new SimpleCabResource(configuration.getTemplate());
+    final SimpleCabResource resource = new SimpleCabResource(new SimpleCabService(new SimpleCabRepository()));
     SimpleCabHealthCheck healthCheck = new SimpleCabHealthCheck(configuration.getTemplate());
     environment.healthChecks().register("client", healthCheck);
     environment.jersey().register(resource);

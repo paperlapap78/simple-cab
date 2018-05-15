@@ -2,7 +2,7 @@ package com.datarepublic.simplecab.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CabTrip {
+public class TripCount {
 
   //medallion, hack_license, vendor_id, rate_code, store_and_fwd_flag,
   //pickup_datetime, dropoff_datetime, passenger_count,
@@ -10,13 +10,13 @@ public class CabTrip {
   //todo: add fields needed?
 
   private  String medallion;
-  private  String count;
+  private Integer count;
 
-  public CabTrip() {
+  public TripCount() {
     // Jackson deserialization
   }
 
-  public CabTrip(String medallion, String count) {
+  public TripCount(String medallion, int count) {
     this.medallion = medallion;
     this.count = count;
   }
@@ -26,7 +26,8 @@ public class CabTrip {
     return medallion;
   }
 
-  public String getCount() {
+  @JsonProperty
+  public Integer getCount() {
     return count;
   }
 }

@@ -5,6 +5,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 import java.io.IOException;
 import java.util.Date;
@@ -45,10 +47,9 @@ public class SimpleCabService {
 
   public String getMedallionsSummary(List<String> medallions, Date pickupDate, boolean ignoreCache) throws IOException {
     HttpUrl url = getHttpUrl(medallions, pickupDate, ignoreCache);
-
     Request request = new Request.Builder().url(url).build();
-
     Response response = client.newCall(request).execute();
+
     return response.body().string();
   }
 
@@ -67,6 +68,8 @@ public class SimpleCabService {
   }
 
   private String formatDate(Date date) {
-    return new DateTime(date).toString();
+    DateTime aDate = new DateTime(date);
+    DateTimeFormatter fmt = ISODateTimeFormat.date();
+    return fmt.print(aDate);
   }
 }
