@@ -2,3 +2,4 @@
 simple-cab.iml
 target/
 *.iml
+*.log
