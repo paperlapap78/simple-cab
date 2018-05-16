@@ -14,8 +14,8 @@ import java.util.List;
 
 public class SimpleCabService {
 
-  public static final String HTTP_SCHEME = "http";
-  public static final String TRIPS_PATH = "trips";
+  private static final String HTTP_SCHEME = "http";
+  private static final String TRIPS_PATH = "trips";
   private final OkHttpClient client;
   private final String host;
   private final int port;
@@ -41,11 +41,11 @@ public class SimpleCabService {
     client.newCall(request).execute();
   }
 
-  public String getMedallionsSummary(List<String> medallions, Date pickupDate) throws IOException {
+  public String getMedallionsSummary(List<String> medallions, DateTime pickupDate) throws IOException {
     return this.getMedallionsSummary(medallions, pickupDate, false);
   }
 
-  public String getMedallionsSummary(List<String> medallions, Date pickupDate, boolean ignoreCache) throws IOException {
+  public String getMedallionsSummary(List<String> medallions, DateTime pickupDate, boolean ignoreCache) throws IOException {
     HttpUrl url = getHttpUrl(medallions, pickupDate, ignoreCache);
     Request request = new Request.Builder().url(url).build();
     Response response = client.newCall(request).execute();
@@ -53,7 +53,7 @@ public class SimpleCabService {
     return response.body().string();
   }
 
-  private HttpUrl getHttpUrl(List<String> medallions, Date pickupDate, boolean ignoreCache) {
+  private HttpUrl getHttpUrl(List<String> medallions, DateTime pickupDate, boolean ignoreCache) {
     HttpUrl.Builder urlBuilder = new HttpUrl.Builder()
         .scheme("http")
         .host(host)
@@ -67,9 +67,8 @@ public class SimpleCabService {
     return urlBuilder.build();
   }
 
-  private String formatDate(Date date) {
-    DateTime aDate = new DateTime(date);
+  private String formatDate(DateTime date) {
     DateTimeFormatter fmt = ISODateTimeFormat.date();
-    return fmt.print(aDate);
+    return fmt.print(date);
   }
 }

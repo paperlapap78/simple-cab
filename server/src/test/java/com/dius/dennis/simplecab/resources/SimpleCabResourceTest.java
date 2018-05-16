@@ -36,10 +36,10 @@ class SimpleCabResourceTest {
     DateTime pickupDate
         = new DateTime("2013-12-01");
 
-    when(service.getTripCounts(medallions, pickupDate))
+    when(service.getTripCounts(medallions, pickupDate, Boolean.FALSE))
         .thenReturn(Lists.newArrayList(new TripCount("medallion12", 5L)));
 
-    List<TripCount> tripCounts = resource.getTripCounts(medallions, pickupDate.toString(), "true");
+    List<TripCount> tripCounts = resource.getTripCounts(medallions, pickupDate.toString(), "false");
     assertThat(tripCounts, hasSize(1));
   }
 }

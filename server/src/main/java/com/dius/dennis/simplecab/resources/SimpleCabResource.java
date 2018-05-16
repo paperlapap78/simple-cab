@@ -22,12 +22,12 @@ public class SimpleCabResource {
   @GET
   @Timed
   public List<TripCount> getTripCounts(@QueryParam("medallion") List<String> medallions, @QueryParam("pickupDate") String pickupDate, @QueryParam("ignoreCache") String ignoreCache) {
-    return service.getTripCounts(medallions, new DateTime(pickupDate));
+    return service.getTripCounts(medallions, new DateTime(pickupDate), Boolean.valueOf(ignoreCache));
   }
 
   @Path("/cache")
   @DELETE
   public void deleteCache() {
-    System.out.println("#### Dennis");
+    service.deleteCache();
   }
 }

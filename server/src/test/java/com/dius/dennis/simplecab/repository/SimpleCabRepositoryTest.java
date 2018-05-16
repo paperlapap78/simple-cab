@@ -52,16 +52,16 @@ class SimpleCabRepositoryTest {
     store = new SimpleCabRepository(jdbi);
   }
 
-  @DisplayName("Test getting trips for a given medallion and pickup time")
+  @DisplayName("Should get a result from DB")
   @Test
-  void testGetCountByMedallionAndPickupDatetime() {
+  void shouldReturnTripCount() {
     Long trips = store.getCountByMedallionAndPickupDatetime(medallionId, new DateTime("2013-12-01"));
     assertThat(trips, is(equalTo(1L)));
   }
 
-  @DisplayName("Test getting trips for a given medallion and pickup time")
+  @DisplayName("Should return 0 trips when no entries found")
   @Test
-  void testGetCountByMedallionAndPickupDatetimeNoEntries() {
+  void shouldReturnZeroNoEntries() {
     Long trips = store.getCountByMedallionAndPickupDatetime(medallionId, new DateTime("2018-04-04"));
     assertThat(trips, is(equalTo(0L)));
   }

@@ -3,3 +3,4 @@ simple-cab.iml
 target/
 *.iml
 *.log
+**/dependency-reduced-pom.xml
