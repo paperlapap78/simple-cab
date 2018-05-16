@@ -10,21 +10,21 @@ import javax.validation.constraints.NotNull;
 
 public class SimpleCabConfiguration extends Configuration {
 
-  @NotEmpty  //todo: clean up
-  private String template;
+  @NotEmpty
+  private String check;
 
   @Valid
   @NotNull
   private DataSourceFactory database = new DataSourceFactory();
 
   @JsonProperty
-  public String getTemplate() {
-    return template;
+  public String getCheck() {
+    return check;
   }
 
   @JsonProperty
-  public void setTemplate(String template) {
-    this.template = template;
+  public void setCheck(String check) {
+    this.check = check;
   }
 
 

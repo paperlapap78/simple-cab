@@ -29,7 +29,7 @@ public class Server extends Application<SimpleCabConfiguration> {
     jdbi.installPlugin(new JodaTimePlugin());
     final SimpleCabRepository store = new SimpleCabRepository(jdbi);
     final SimpleCabResource resource = new SimpleCabResource(new SimpleCabService(new SimpleCabCache(store), store));
-    SimpleCabHealthCheck healthCheck = new SimpleCabHealthCheck(configuration.getTemplate());
+    SimpleCabHealthCheck healthCheck = new SimpleCabHealthCheck(configuration.getCheck());
     environment.healthChecks().register("client", healthCheck);
     environment.jersey().register(resource);
   }

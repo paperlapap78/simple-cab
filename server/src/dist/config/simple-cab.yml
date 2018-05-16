@@ -1,4 +1,4 @@
-template: Hello, %s!
+check: Hello, %s!
 
 database:
   driverClass: com.mysql.cj.jdbc.Driver
