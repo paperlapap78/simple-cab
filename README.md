@@ -29,3 +29,9 @@ Config file: src/main/java/com/dius/dennis/simplecab/simple-cab.yml
 Note: need to set DB
 
 run fatJar with `java -jar target/server-1.0-SNAPSHOT.jar server src/dist/config/simple-cab.yml`
+
+## Docker
+
+SQL dump file needs to be in server/db-dump folder
+
+run `docker-compose up` to start server
