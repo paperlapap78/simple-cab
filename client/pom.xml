@@ -7,7 +7,7 @@
     <name>NYC Simple Cab - Client</name>
 
     <parent>
-        <groupId>com.datarepublic</groupId>
+        <groupId>com.dennis</groupId>
         <artifactId>simple-cab</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
